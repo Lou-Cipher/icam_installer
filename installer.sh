@@ -27,8 +27,8 @@ urlsender=raw.githubusercontent.com/newbond/oscam/master/install/sender
 urlinstall=raw.githubusercontent.com/newbond/oscam/master/install
 my_distribution=$(cat /etc/issue |grep "\S"|sed -e "s/[Ww]elcome to //g" | awk '{print $1}')
 my_image=$(cat /etc/issue |grep "\S" | sed ':a;N;$!ba;s/\n//g'| awk '{print $3}')
-rebootmsg="Box wird nach dem Beenden vom Script neugestartet"
-echo -e "\e[33m Update für eine optimale Installation\e[0m"
+rebootmsg="Box wird nach dem Beenden des Installationsscript neugestartet"
+echo -e "\e[33m Update für eine optimale Autoinstallation\e[0m"
 wget -O - -q "127.0.0.1/web/message?text=VITREX%20Icam%20Mulitscript%20wurde%20gestartet...%20bitte%20stehe%20bereit%20:)%20%20$STARTDATE&type=1&timeout=15" > /dev/null
 if [ -e /etc/opkg ]; then
 exec_cmd="opkg"
@@ -227,7 +227,7 @@ fi
 get_bouquets() {
 echo ""
 echo "Wenn keine Sendersuche durchgeführt wurde oder du keine Lust dazu hast:"
-read  -p "Download der lamedb, satellites.xml und cables.xml?    y/n : " bqdl </dev/tty
+read  -p "Download der lamedb und satellites.xml?    y/n : " bqdl </dev/tty
 case $bqdl in
 [Yy]*)
 autodllame=1
@@ -316,6 +316,7 @@ disable_autoupdate_bouquets() {
 autoupdate_switch=false
 echo "#  Icam Mulitscript by Vitrex" >  /usr/bin/icam_autoupdate
 echo "exit 0" >> /usr/bin/icam_autoupdate
+chmod +x /usr/bin/cccamto_autoupdate
 }
 replace_bouquets_type() {
 $exec_cmd install exteplayer3
@@ -381,7 +382,7 @@ kill_oscam
 get_oscam_configs
 first_replace_oscam_vitrex
 set_enigma2_settings
-echo ""; echo -e "\e[32m ... Naja, schick! Wir sind fertig. ;)\e[0m";
+echo ""; echo -e "\e[32m ... Na ja, schick! Wir sind fertig. ;)\e[0m";
 sleep 2
 }
 install_vti() {
@@ -448,7 +449,7 @@ echo "                                                         by VITREX-TEAM   
 mainmenu() {
 my_header
 echo -e "\e[32m Super! Es sieht so aus, als ob du $my_image nutzt.\e[0m"
-echo -e "\e[33m ######*** Main Menü ***######\e[0m"
+echo -e "\e[33m ######*** Main Menu ***######\e[0m"
 echo -e "1) Installiert Icam Oscam             // Neu oder Vorschlaghammermodus ;)"
 echo -e "2) Nur die Oscam Bin aktualisieren    // Aktualisiert Oscam Bin bei laufender Softcam"
 echo -e "3) Nur Bouquets installieren          // Installiert ICam Bouquets (nach Bedarf auch HD/SD/OE)"
@@ -456,7 +457,7 @@ echo -e "4) Installiert ICAM Picons            // Installiert nur ICAM Picons"
 echo -e "5) Backup oder Wiederherstellung      // Backup oder Wiederherstellung Oscam"
 echo -e "6) Fix Settings                       // Überarbeitet Enigma Einstellungen in /etc/enigma2/settings "
 echo -e "7) Fix Streaming-IP                   // Ändert 127.0.0.1 in $myip für Home-Streaming"
-echo -e "8) Fix Sound-Problem                  // Ändert den Streaming-Typ"
+echo -e "8) Fix Sound-Problem                  // Ändert den Streaming-Typ ... EXPERIMENTAL"
 echo -e "9) Bouquet Autoupdate                 // Aktualisiert Bouquets bei Neustart"
 echo -e "0) Ausgang"
 read  -p "choose an Option: " main </dev/tty
