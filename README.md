@@ -7,7 +7,7 @@ den Sourcecode unseres Scripts,
 welches wir nun fast ein Jahr, wie ein eigenes Kind, hegen und pflegen, freizugeben.
 
 
-Vor ein Paar tagen wurde der Code von einem Mitglied bei Vit*** **gestohlen** und als sein eigenes Script verkauft!
+Vor ein Paar tagen wurde der Code von einem Mitglied bei Vit*** **gestohlen** und als sein eigenes Script verkauft!  
 Wer das genau war, ist noch in Klärung ;)
 
 
